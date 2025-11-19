@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'news',
 ]
 
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -51,11 +52,18 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'news_app.urls'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "news" / "static",
+]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "news" / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
