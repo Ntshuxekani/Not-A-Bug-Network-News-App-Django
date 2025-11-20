@@ -1,0 +1,12 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+<h1>{{ post.title }}</h1>
+
+{% if post.image %}
+<img src="{{ post.image.url }}" width="500">
+{% endif %}
+
+<p>{{ post.content }}</p>
+<p><strong>Posted on:</strong> {{ post.created_at }}</p>
+{% endblock %}

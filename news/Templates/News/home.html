@@ -1,0 +1,57 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+
+<h1>Latest News</h1>
+
+<!-- Show search results if a query was used -->
+{% if query %}
+    <p>Search results for: <strong>{{ query }}</strong></p>
+{% endif %}
+
+<!-- LOCAL DATABASE NEWS -->
+<h2>Local News</h2>
+
+{% if posts %}
+    {% for post in posts %}
+        <div class="card">
+            <h2>
+                <a href="{% url 'detail' post.id %}">{{ post.title }}</a>
+            </h2>
+
+            {% if post.image %}
+                <img src="{{ post.image.url }}" width="300">
+            {% endif %}
+
+            <p>{{ post.content|slice:":150" }}...</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No local news found.</p>
+{% endif %}
+
+<hr>
+
+<!-- API NEWS SECTION -->
+<h2>Latest news from the Globe</h2>
+
+{% if api_articles %}
+    {% for article in api_articles %}
+        <div class="card">
+
+            <h3>{{ article.title }}</h3>
+
+            {% if article.urlToImage %}
+                <img src="{{ article.urlToImage }}" width="300">
+            {% endif %}
+
+            <p>{{ article.description }}</p>
+
+            <a href="{{ article.url }}" target="_blank">Read full article</a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Could not load live news right now. Please try again later.</p>
+{% endif %}
+
+{% endblock %}
