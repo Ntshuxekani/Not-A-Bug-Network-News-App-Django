@@ -76,6 +76,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'news_app.wsgi.application'
+NEWS_API_KEY = "f6ba60fd2f9c45808cc8b4fb7e27bd25"
+
 
 
 # Database
